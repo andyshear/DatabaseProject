@@ -13,7 +13,7 @@ public class Prototype
     try
     {
       // create a database connection
-      connection = DriverManager.getConnection("jdbc:sqlite:sheararExamOne.db");
+      connection = DriverManager.getConnection("jdbc:sqlite:finalProject.db");
       Statement statement = connection.createStatement();
       statement.setQueryTimeout(30);  // set timeout to 30 sec.
 	  
@@ -34,18 +34,6 @@ public class Prototype
               " ALBUM          CHAR(50)    NOT NULL)";
 	  statement.executeUpdate(songs);
 	  
-	  String activity = "ACTIVITY " +
-              "(SONG_ID        INT     NOT NULL," +
-              " ACTIVITY_NAME           CHAR(30)    NOT NULL, " + 
-              " FOREIGN KEY(SONG_ID) REFERENCES SONG(SONG_ID));";
-	  statement.executeUpdate(activity);
-	  
-	  String mood = "MOOD " +
-              "(SONG_ID        INT     NOT NULL," +
-              " MOOD_NAME           CHAR(30)    NOT NULL, " + 
-              " FOREIGN KEY(SONG_ID) REFERENCES SONG(SONG_ID));";
-	  statement.executeUpdate(mood);
-	  
 	  String moodPlaylist = "MOOD_PLAYLIST " +
               "(MOOD_NAME        CHAR(30) PRIMARY KEY     NOT NULL," +
               " TIME_LISTENED         REAL    NOT NULL);";
@@ -56,36 +44,55 @@ public class Prototype
               " TIME_LISTENED         REAL    NOT NULL);";
 	  statement.executeUpdate(activityPlaylist);
 	  
-	  String MPG = "MPG " +
-              "(SONG_ID        INT PRIMARY KEY     NOT NULL," +
-              " MOOD_NAME           CHAR(30) PRIMARY KEY    NOT NULL, " +
-              " FOREIGN KEY(MOOD_NAME) REFERENCES MOOD_PLAYLIST(MOOD_NAME), " +
-              " FOREIGN KEY(SONG_ID) REFERENCES SONG(SONG_ID));";
-	  statement.executeUpdate(MPG);
-	  
-	  String APG = "APG " +
+	  String activity = "ACTIVITY " +
               "(SONG_ID        INT PRIMARY KEY     NOT NULL," +
               " ACTIVITY_NAME           CHAR(30) PRIMARY KEY    NOT NULL, " +
               " FOREIGN KEY(ACTIVITY_NAME) REFERENCES ACTIVITY_PLAYLIST(ACTIVITY_NAME), " +
               " FOREIGN KEY(SONG_ID) REFERENCES SONG(SONG_ID));";
-	  statement.executeUpdate(MPG);
+	  statement.executeUpdate(activity);
+	  
+	  String mood = "MOOD " +
+              "(SONG_ID        INT PRIMARY KEY     NOT NULL," +
+              " MOOD_NAME           CHAR(30) PRIMARY KEY    NOT NULL, " +
+              " FOREIGN KEY(MOOD_NAME) REFERENCES MOOD_PLAYLIST(MOOD_NAME), " +
+              " FOREIGN KEY(SONG_ID) REFERENCES SONG(SONG_ID));";
+	  statement.executeUpdate(mood);
 	  
 	  /**
 	   * ADD SONGS FUNCTION
 	   */
+	  String loadSongs = "LOAD DATA INFILE '"+filename+"' INTO TABLE SONGS (SONG_ID, NAME, ARTIST, GENRE, LENGTH, RATING, ALBUM);";
+      statement.executeUpdate(loadSongs);
+	  
+	  String loadMood = "LOAD DATA INFILE '"+filename+"' INTO TABLE MOOD (SONG_ID, MOOD_NAME);";
+      statement.executeUpdate(loadMood);
+	  
+	  String loadActivity = "LOAD DATA INFILE '"+filename+"' INTO TABLE ACTIVITY (SONG_ID, ACTIVITY_NAME);";
+      statement.executeUpdate(loadMood);
+	  
+	  /**
+	  * QUERIES
+	  */
+	  String moodName = input.nextLine();
+	  
+	  ResultSet moodPlaylist = statement.executeQuery("INSERT INTO MOOD_PLAYLIST SELECT SONG_ID, MOOD_NAME FROM MOOD LEFT JOIN MOOD ON MOOD_PLAYLIST.MOOD_NAME = " + moodName + ";");
+	  
+	  String activityName = input.nextLine();
+	  
+	  ResultSet activityPlaylist = statement.executeQuery("INSERT INTO ACTIVITY_PLAYLIST SELECT SONG_ID, ACTIVITY_NAME FROM ACTIVITY LEFT JOIN ACTIVITY ON ACTIVITY_PLAYLIST.ACTIVITY_NAME = " + activityName + ";");
 	  
 	  
 	  
 	  
-	  
-	  
-	  String id = input.nextLine();
 
-      ResultSet rs = statement.executeQuery("SELECT " + id);
       while(rs.next())
       {
         // read the result set
-        System.out.println("Name = " + rs.getString("name"));        
+        System.out.println("Song = " + moodPlaylist.getString("SONG-ID"));
+		System.out.println("Time Listened = " + moodPlaylist.getString("TIME_LISTENED"));
+
+		System.out.println("Song = " + activityPlaylist.getString("SONG-ID"));
+		System.out.println("Time Listened = " + activityPlaylist.getString("TIME_LISTENED"));        
       }
     }
     catch(SQLException e)
