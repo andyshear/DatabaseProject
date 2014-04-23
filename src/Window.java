@@ -1,22 +1,16 @@
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import java.awt.BorderLayout;
-import javax.swing.JTextField;
-import net.miginfocom.swing.MigLayout;
-
-import javax.swing.JOptionPane;
-import javax.swing.SpringLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.JList;
-import javax.swing.AbstractListModel;
-import javax.swing.JScrollPane;
-import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
-import javax.swing.Action;
 import java.awt.event.ActionListener;
+
+import javax.swing.AbstractAction;
+import javax.swing.AbstractListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.SpringLayout;
 
 
 public class Window {
