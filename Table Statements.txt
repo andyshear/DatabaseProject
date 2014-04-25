@@ -1,0 +1,279 @@
+CREATE TABLE SONGS(
+SONG_ID INT PRIMARY KEY NOT NULL,
+NAME CHAR(50) NOT NULL, 
+ARTIST CHAR(50) NOT NULL, 
+GENRE CHAR(50) NOT NULL, 
+LENGTH REAL NOT NULL,
+RATING INT,
+ALBUM CHAR(50) NOT NULL);
+
+CREATE TABLE ACTIVITY(
+SONG_ID INT NOT NULL,
+ACTIVITY_NAME CHAR(30) NOT NULL, 
+FOREIGN KEY(SONG_ID) REFERENCES SONG(SONG_ID));
+
+CREATE TABLE MOOD(
+SONG_ID INT NOT NULL,
+MOOD_NAME CHAR(30) NOT NULL,
+FOREIGN KEY(SONG_ID) REFERENCES SONG(SONG_ID));
+
+CREATE TABLE MOOD_PLAYLIST(
+MOOD_NAME CHAR(30) PRIMARY KEY NOT NULL,
+TIME_LISTENED REAL NOT NULL);
+
+
+INSERT INTO SONGS VALUES (
+1,"Finally Moving","Pretty Lights","Electronic",278,"NULL","Taking Up Your Precious Time"
+);
+INSERT INTO SONGS VALUES (
+2,"Sumer's Thirst","Pretty Lights","Electronic",262,"NULL","Taking Up Your Precious Time"
+);
+INSERT INTO SONGS VALUES (
+3,"Get Free","Major Lazor","Electronic",291,"NULL","Get Free"
+);
+INSERT INTO SONGS VALUES (
+4,"About You","XXYYXX","Electronic",248,"NULL","XXYYXX"
+);
+INSERT INTO SONGS VALUES (
+5,"So Many Details","Toro Y Moi","Electronic",285,"NULL","Anything in Return"
+);
+INSERT INTO SONGS VALUES (
+6,"Wash.","Bon Iver","Electronic",299,"NULL","Bon Iver"
+);
+INSERT INTO SONGS VALUES (
+7,"Music Sounds Better With You","Stardust","Electronic",242,"NULL","Total Music: Dance Classic Vol.1"
+);
+INSERT INTO SONGS VALUES (
+8,"A-Punk","Vampire Weekend","Alternative",137,"NULL","Vampire Weekend"
+);
+INSERT INTO SONGS VALUES (
+9,"Sweater Weather","The Neighborhood","Alternative",240,"NULL","I Love You."
+);
+INSERT INTO SONGS VALUES (
+10,"Elevate","St. Lucia","Electronic",308,"NULL","When The Night"
+);
+INSERT INTO SONGS VALUES (
+11,"Default","Django Django","Alternative",187,"NULL","Default"
+);
+INSERT INTO SONGS VALUES (
+12,"Sweet Disposition","The Temper Trap","Alternative",232,"NULL","Conditions"
+);
+INSERT INTO SONGS VALUES (
+13,"Safety Dance","Men Without Hats","Alternative",269,"NULL","Rhythm of Youth"
+);
+INSERT INTO SONGS VALUES (
+14,"My Number","Foals","Alternative",241,"NULL","Holy Fire"
+);
+INSERT INTO SONGS VALUES (
+15,"Your Man","Josh Turner","Country",212,"NULL","Your Man"
+);
+INSERT INTO SONGS VALUES (
+16,"Somethin' 'Bout a Truck","Kip Moore","Country",214,"NULL","Up All Night"
+);
+INSERT INTO SONGS VALUES (
+17,"Red Dirt Road","Brooks & Dunn","Country",260,"NULL","#1s … and then some"
+);
+INSERT INTO SONGS VALUES (
+18,"Highway Don't Care","Tim McGraw","Country",277,"NULL","Two Lanes of Freedom"
+);
+INSERT INTO SONGS VALUES (
+19,"All the Small Things","Blink-182","Rock",168,"NULL","Enema of the State"
+);
+INSERT INTO SONGS VALUES (
+20,"Award Tour","Tribe Called Quest","Rap",229,"NULL","Midnight Marauders"
+);
+INSERT INTO SONGS VALUES (
+21,"Pretty Good at Drinkin' Beer","Billy Currington","Country",182,"NULL","Enjoy Yourself"
+);
+INSERT INTO SONGS VALUES (
+22,"Do I wana Know?","Arctic Monkeys","Alternative",272,"NULL","AM"
+);
+INSERT INTO SONGS VALUES (
+23,"Doeses & Mimosas","Cherub","Electronic",332,"NULL","MoM & DaD"
+);
+INSERT INTO SONGS VALUES (
+24,"Time","Hans Zimmer","Classical",276,"NULL","Inception (Music from the Motion Picture)"
+);
+INSERT INTO SONGS VALUES (
+25,"Dream is Collapsing","Hans Zimmer","Classical",144,"NULL","Inception (Music from the Motion Picture)"
+);
+INSERT INTO SONGS VALUES (
+26,"Dream Within a Dream","Hans Zimmer","Classical",304,"NULL","Inception (Music from the Motion Picture)"
+);
+
+
+INSERT INTO MOOD VALUES(
+1,"Chill"
+);
+INSERT INTO MOOD VALUES(
+2,"Chill"
+);
+INSERT INTO MOOD VALUES(
+3,"Chill"
+);
+INSERT INTO MOOD VALUES(
+4,"Chill"
+);
+INSERT INTO MOOD VALUES(
+5,"Chill"
+);
+INSERT INTO MOOD VALUES(
+6,"Chill"
+);
+INSERT INTO MOOD VALUES(
+7,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+8,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+9,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+9,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+10,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+11,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+12,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+12,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+13,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+14,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+15,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+16,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+17,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+18,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+19,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+20,"Chill"
+);
+INSERT INTO MOOD VALUES(
+21,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+22,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+23,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+23,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+24,"Chill"
+);
+INSERT INTO MOOD VALUES(
+25,"Chill"
+);
+INSERT INTO MOOD VALUES(
+26,"Chill"
+);
+
+INSERT INTO ACTIVITY VALUES(
+1,"Relaxing"
+);
+INSERT INTO ACTIVITY VALUES(
+2,"Relaxing"
+);
+INSERT INTO ACTIVITY VALUES(
+3,"Relaxing"
+);
+INSERT INTO ACTIVITY VALUES(
+4,"Relaxing"
+);
+INSERT INTO ACTIVITY VALUES(
+5,"Relaxing"
+);
+INSERT INTO ACTIVITY VALUES(
+6,"Relaxing"
+);
+INSERT INTO ACTIVITY VALUES(
+7,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+8,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+9,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+10,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+11,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+12,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+13,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+14,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+15,"Sitting in the Sun"
+);
+INSERT INTO ACTIVITY VALUES(
+15,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+16,"Sitting in the Sun"
+);
+INSERT INTO ACTIVITY VALUES(
+16,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+17,"Sitting in the Sun"
+);
+INSERT INTO ACTIVITY VALUES(
+18,"Sitting in the Sun"
+);	
+INSERT INTO ACTIVITY VALUES(
+19,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+20,"Relaxing"
+);
+INSERT INTO ACTIVITY VALUES(
+21,"Sitting in the Sun"
+);
+INSERT INTO ACTIVITY VALUES(
+21,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+22,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+23,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+24,"Working"
+);
+INSERT INTO ACTIVITY VALUES(
+25,"Working"
+);
+INSERT INTO ACTIVITY VALUES(
+26,"Working"
+);
