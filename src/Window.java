@@ -46,6 +46,7 @@ public class Window {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("serial")
 	private void initialize() {
 		frmTeamMonstarsProject = new JFrame();
 		frmTeamMonstarsProject.setResizable(false);
@@ -105,16 +106,7 @@ public class Window {
 		springLayout.putConstraint(SpringLayout.EAST, scrollPane, -27, SpringLayout.EAST, frmTeamMonstarsProject.getContentPane());
 		frmTeamMonstarsProject.getContentPane().add(scrollPane);
 		
-		JList list = new JList();
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Artist - Title - Length"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
+		JList<String> list = new JList<String>();
 		scrollPane.setViewportView(list);
 		
 		JLabel lblYouShouldListen = new JLabel("You should listen to:");
@@ -128,6 +120,26 @@ public class Window {
 		lblTimeListenedTo.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		springLayout.putConstraint(SpringLayout.NORTH, lblTimeListenedTo, 17, SpringLayout.SOUTH, scrollPane);
 		frmTeamMonstarsProject.getContentPane().add(lblTimeListenedTo);
+		
+		//NON-GENERATED CODE
+		
+		Controller.instance = new Controller(lblTimeListenedTo, list);
+		btnSearchMood.addActionListener(new AbstractAction() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Controller.instance.searchForMoods(moodText.getText());
+			}
+			
+		});
+		btnSearchActivity.addActionListener(new AbstractAction() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Controller.instance.searchForActivities(activityText.getText());				
+			}
+			
+		});
 	}
 
 	private class SwingAction extends AbstractAction {
