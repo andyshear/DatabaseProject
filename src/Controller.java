@@ -24,7 +24,9 @@ public class Controller {
 	 * @param moodList A list of moods, separated by commas, from the "Mood" box.
 	 */
 	public void searchForMoods(String moodList) {
-		// TODO
+		String moodName = input.nextLine();
+	  
+		ResultSet moodPlaylist = statement.executeQuery("INSERT INTO MOOD_PLAYLIST SELECT SONG_ID, MOOD_NAME FROM MOOD LEFT JOIN MOOD ON MOOD_PLAYLIST.MOOD_NAME = " + moodName + ";");
 	}
 	
 	/**
@@ -32,7 +34,9 @@ public class Controller {
 	 * @param activityList A list of activities, separated by commas, from the "Activity" box.
 	 */
 	public void searchForActivities(String activityList) {
-		// TODO
+		String activityName = input.nextLine();
+	  
+		ResultSet activityPlaylist = statement.executeQuery("INSERT INTO ACTIVITY_PLAYLIST SELECT SONG_ID, ACTIVITY_NAME FROM ACTIVITY LEFT JOIN ACTIVITY ON ACTIVITY_PLAYLIST.ACTIVITY_NAME = " + activityName + ";");
 	}
 	
 	/**
