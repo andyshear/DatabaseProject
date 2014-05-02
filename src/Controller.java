@@ -14,8 +14,9 @@ public class Controller {
 	private SongList list;
 	
 	public Connection connection;
+	public Statement statement;
 	
-	public StartController() throws ClassNotFoundException
+	public Controller() throws ClassNotFoundException
 	{
     // load the sqlite-JDBC driver using the current class loader
     Class.forName("org.sqlite.JDBC");
@@ -24,8 +25,8 @@ public class Controller {
     try
     {
       // create a database connection
-      connection = DriverManager.getConnection("jdbc:sqlite:teamMonstars.db");
-      Statement statement = connection.createStatement();
+      connection = DriverManager.getConnection("jdbc:sqlite:DatabaseProject.db");
+      statement = connection.createStatement();
       statement.setQueryTimeout(30);  // set timeout to 30 sec.
 	}
 	catch(SQLException e)
@@ -48,9 +49,7 @@ public class Controller {
 	 */
 	public void searchForMoods(String moodList) {
 		try{
-			String moodName = moodList;
-	  
-			ResultSet moodPlaylist = statement.executeQuery("INSERT INTO MOOD_PLAYLIST SELECT SONG_ID, MOOD_NAME FROM MOOD LEFT JOIN MOOD ON MOOD_PLAYLIST.MOOD_NAME = " + moodName + ";");
+			ResultSet moodPlaylist = statement.executeQuery("SELECT SONG_ID, NAME, ARTIST, GENRE, LENGTH, RATING, ALBUM FROM SONGS JOIN (SELECT SONG_ID FROM MOOD WHERE MOOD_NAME = " + moodList + ") USING (SONG_ID);");
 		}
 		catch(SQLException e)
 		{
@@ -66,9 +65,7 @@ public class Controller {
 	 */
 	public void searchForActivities(String activityList) {
 		try{
-			String activityName = activityList;
-	  
-			ResultSet activityPlaylist = statement.executeQuery("INSERT INTO ACTIVITY_PLAYLIST SELECT SONG_ID, ACTIVITY_NAME FROM ACTIVITY LEFT JOIN ACTIVITY ON ACTIVITY_PLAYLIST.ACTIVITY_NAME = " + activityName + ";");
+			ResultSet activityPlaylist = statement.executeQuery("SELECT SONG_ID, NAME, ARTIST, GENRE, LENGTH, RATING, ALBUM FROM SONGS JOIN (SELECT SONG_ID FROM ACTIVITY WHERE ACTIVITY_NAME = " + activityList + ") USING (SONG_ID);");
 		}
 		catch(SQLException e)
 		{
