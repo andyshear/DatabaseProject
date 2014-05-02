@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.sql.*;
 import javax.swing.AbstractListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -13,6 +13,29 @@ public class Controller {
 	private JLabel listenedTo;
 	private SongList list;
 	
+	public Connection connection;
+	
+	public StartController() throws ClassNotFoundException
+	{
+    // load the sqlite-JDBC driver using the current class loader
+    Class.forName("org.sqlite.JDBC");
+
+    connection = null;
+    try
+    {
+      // create a database connection
+      connection = DriverManager.getConnection("jdbc:sqlite:teamMonstars.db");
+      Statement statement = connection.createStatement();
+      statement.setQueryTimeout(30);  // set timeout to 30 sec.
+	}
+	catch(SQLException e)
+    {
+      // if the error message is "out of memory", 
+      // it probably means no database file is found
+      System.err.println(e.getMessage());
+    }
+	}
+	
 	public Controller(JLabel listenedTo, JList<String> displaySongsList) {
 		this.listenedTo = listenedTo;
 		list = new SongList();
@@ -24,9 +47,17 @@ public class Controller {
 	 * @param moodList A list of moods, separated by commas, from the "Mood" box.
 	 */
 	public void searchForMoods(String moodList) {
-		String moodName = input.nextLine();
+		try{
+			String moodName = moodList;
 	  
-		ResultSet moodPlaylist = statement.executeQuery("INSERT INTO MOOD_PLAYLIST SELECT SONG_ID, MOOD_NAME FROM MOOD LEFT JOIN MOOD ON MOOD_PLAYLIST.MOOD_NAME = " + moodName + ";");
+			ResultSet moodPlaylist = statement.executeQuery("INSERT INTO MOOD_PLAYLIST SELECT SONG_ID, MOOD_NAME FROM MOOD LEFT JOIN MOOD ON MOOD_PLAYLIST.MOOD_NAME = " + moodName + ";");
+		}
+		catch(SQLException e)
+		{
+		// if the error message is "out of memory", 
+		// it probably means no database file is found
+		System.err.println(e.getMessage());
+		}
 	}
 	
 	/**
@@ -34,9 +65,18 @@ public class Controller {
 	 * @param activityList A list of activities, separated by commas, from the "Activity" box.
 	 */
 	public void searchForActivities(String activityList) {
-		String activityName = input.nextLine();
+		try{
+			String activityName = activityList;
 	  
-		ResultSet activityPlaylist = statement.executeQuery("INSERT INTO ACTIVITY_PLAYLIST SELECT SONG_ID, ACTIVITY_NAME FROM ACTIVITY LEFT JOIN ACTIVITY ON ACTIVITY_PLAYLIST.ACTIVITY_NAME = " + activityName + ";");
+			ResultSet activityPlaylist = statement.executeQuery("INSERT INTO ACTIVITY_PLAYLIST SELECT SONG_ID, ACTIVITY_NAME FROM ACTIVITY LEFT JOIN ACTIVITY ON ACTIVITY_PLAYLIST.ACTIVITY_NAME = " + activityName + ";");
+		}
+		catch(SQLException e)
+		{
+		// if the error message is "out of memory", 
+		// it probably means no database file is found
+		System.err.println(e.getMessage());
+		}
+
 	}
 	
 	/**
