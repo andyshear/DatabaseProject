@@ -80,7 +80,7 @@ public class Controller {
 	 */
 	public void searchForActivities(String activityList) {
 		try{
-			ResultSet activityPlaylist = statement.executeQuery("SELECT SONG_ID, NAME, ARTIST, GENRE, LENGTH, RATING, ALBUM FROM SONGS JOIN (SELECT SONG_ID FROM ACTIVITY WHERE ACTIVITY_NAME = " + activityList + ") USING (SONG_ID);");
+			ResultSet activityPlaylist = statement.executeQuery("SELECT SONG_ID, NAME, ARTIST, GENRE, LENGTH, RATING, ALBUM FROM SONGS JOIN (SELECT SONG_ID FROM ACTIVITY WHERE ACTIVITY_NAME = '" + activityList + "') USING (SONG_ID);");
 			int count = 0;
 			/*while(activityPlaylist.next())
 		    {
