@@ -48,18 +48,18 @@ public class Controller {
 	 */
 	public void searchForMoods(String moodList) {
 		try{
-			ResultSet moodPlaylist = statement.executeQuery("SELECT SONG_ID, NAME, ARTIST, GENRE, LENGTH, RATING, ALBUM FROM SONGS JOIN (SELECT SONG_ID FROM MOOD WHERE MOOD_NAME = " + moodList + ") USING (SONG_ID);");
+			ResultSet moodPlaylist = statement.executeQuery("SELECT SONG_ID, NAME, ARTIST, GENRE, LENGTH, RATING, ALBUM FROM SONGS JOIN (SELECT SONG_ID FROM MOOD WHERE MOOD_NAME = '" + moodList + "') USING (SONG_ID);");
 			int count = 0;
-			while(moodPlaylist.next())
+			/*while(moodPlaylist.next())
 		    {
 				count++;
 		    }
-			moodPlaylist.first();
-			String [] s = new String[count];
+			moodPlaylist.first();*/
+			String [] s = new String[15];
 			count = 0;
 			while(moodPlaylist.next())
 		    {
-		        for(int i=1; i<7; i++){
+		        for(int i=2; i<6; i++){
 		        	s[count] += moodPlaylist.getString(i);
 		        }
 		        count++;        
@@ -82,16 +82,16 @@ public class Controller {
 		try{
 			ResultSet activityPlaylist = statement.executeQuery("SELECT SONG_ID, NAME, ARTIST, GENRE, LENGTH, RATING, ALBUM FROM SONGS JOIN (SELECT SONG_ID FROM ACTIVITY WHERE ACTIVITY_NAME = " + activityList + ") USING (SONG_ID);");
 			int count = 0;
-			while(activityPlaylist.next())
+			/*while(activityPlaylist.next())
 		    {
 				count++;
 		    }
-			activityPlaylist.first();
-			String [] s = new String[count];
+			activityPlaylist.first();*/
+			String [] s = new String[15];
 			count = 0;
 			while(activityPlaylist.next())
 		    {
-		        for(int i=1; i<7; i++){
+		        for(int i=2; i<6; i++){
 		        	s[count] += activityPlaylist.getString(i);
 		        }
 		        count++;        
