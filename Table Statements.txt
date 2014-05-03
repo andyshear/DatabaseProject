@@ -19,86 +19,155 @@ FOREIGN KEY(SONG_ID) REFERENCES SONG(SONG_ID));
 
 CREATE TABLE MOOD_PLAYLIST(
 MOOD_NAME CHAR(30) PRIMARY KEY NOT NULL,
-TIME_LISTENED REAL NOT NULL);
+LENGTH REAL NOT NULL,
+TIMES_SEARCHED INT NOT NULL);
+
+CREATE TABLE ACTIVITY_PLAYLIST(
+ACTIVITY_NAME CHAR(30) NOT NULL,
+LENGTH REAL NOT NULL,
+TIMES_SEARCHED INT NOT NULL);
 
 
 INSERT INTO SONGS VALUES (
-1,"Finally Moving","Pretty Lights","Electronic",278,"NULL","Taking Up Your Precious Time"
+1,"Finally Moving","Pretty Lights","Electronic",278,NULL,"Taking Up Your Precious Time"
 );
 INSERT INTO SONGS VALUES (
-2,"Sumer's Thirst","Pretty Lights","Electronic",262,"NULL","Taking Up Your Precious Time"
+2,"Sumer's Thirst","Pretty Lights","Electronic",262,NULL,"Taking Up Your Precious Time"
 );
 INSERT INTO SONGS VALUES (
-3,"Get Free","Major Lazor","Electronic",291,"NULL","Get Free"
+3,"Get Free","Major Lazor","Electronic",291,NULL,"Get Free"
 );
 INSERT INTO SONGS VALUES (
-4,"About You","XXYYXX","Electronic",248,"NULL","XXYYXX"
+4,"About You","XXYYXX","Electronic",248,NULL,"XXYYXX"
 );
 INSERT INTO SONGS VALUES (
-5,"So Many Details","Toro Y Moi","Electronic",285,"NULL","Anything in Return"
+5,"So Many Details","Toro Y Moi","Electronic",285,NULL,"Anything in Return"
 );
 INSERT INTO SONGS VALUES (
-6,"Wash.","Bon Iver","Electronic",299,"NULL","Bon Iver"
+6,"Wash.","Bon Iver","Electronic",299,NULL,"Bon Iver"
 );
 INSERT INTO SONGS VALUES (
-7,"Music Sounds Better With You","Stardust","Electronic",242,"NULL","Total Music: Dance Classic Vol.1"
+7,"Music Sounds Better With You","Stardust","Electronic",242,NULL,"Total Music: Dance Classic Vol.1"
 );
 INSERT INTO SONGS VALUES (
-8,"A-Punk","Vampire Weekend","Alternative",137,"NULL","Vampire Weekend"
+8,"A-Punk","Vampire Weekend","Alternative",137,NULL,"Vampire Weekend"
 );
 INSERT INTO SONGS VALUES (
-9,"Sweater Weather","The Neighborhood","Alternative",240,"NULL","I Love You."
+9,"Sweater Weather","The Neighborhood","Alternative",240,NULL,"I Love You."
 );
 INSERT INTO SONGS VALUES (
-10,"Elevate","St. Lucia","Electronic",308,"NULL","When The Night"
+10,"Elevate","St. Lucia","Electronic",308,NULL,"When The Night"
 );
 INSERT INTO SONGS VALUES (
-11,"Default","Django Django","Alternative",187,"NULL","Default"
+11,"Default","Django Django","Alternative",187,NULL,"Default"
 );
 INSERT INTO SONGS VALUES (
-12,"Sweet Disposition","The Temper Trap","Alternative",232,"NULL","Conditions"
+12,"Sweet Disposition","The Temper Trap","Alternative",232,NULL,"Conditions"
 );
 INSERT INTO SONGS VALUES (
-13,"Safety Dance","Men Without Hats","Alternative",269,"NULL","Rhythm of Youth"
+13,"Safety Dance","Men Without Hats","Alternative",269,NULL,"Rhythm of Youth"
 );
 INSERT INTO SONGS VALUES (
-14,"My Number","Foals","Alternative",241,"NULL","Holy Fire"
+14,"My Number","Foals","Alternative",241,NULL,"Holy Fire"
 );
 INSERT INTO SONGS VALUES (
-15,"Your Man","Josh Turner","Country",212,"NULL","Your Man"
+15,"Your Man","Josh Turner","Country",212,NULL,"Your Man"
 );
 INSERT INTO SONGS VALUES (
-16,"Somethin' 'Bout a Truck","Kip Moore","Country",214,"NULL","Up All Night"
+16,"Somethin' 'Bout a Truck","Kip Moore","Country",214,NULL,"Up All Night"
 );
 INSERT INTO SONGS VALUES (
-17,"Red Dirt Road","Brooks & Dunn","Country",260,"NULL","#1s … and then some"
+17,"Red Dirt Road","Brooks & Dunn","Country",260,NULL,"#1s … and then some"
 );
 INSERT INTO SONGS VALUES (
-18,"Highway Don't Care","Tim McGraw","Country",277,"NULL","Two Lanes of Freedom"
+18,"Highway Don't Care","Tim McGraw","Country",277,NULL,"Two Lanes of Freedom"
 );
 INSERT INTO SONGS VALUES (
-19,"All the Small Things","Blink-182","Rock",168,"NULL","Enema of the State"
+19,"All the Small Things","Blink-182","Rock",168,NULL,"Enema of the State"
 );
 INSERT INTO SONGS VALUES (
-20,"Award Tour","Tribe Called Quest","Rap",229,"NULL","Midnight Marauders"
+20,"Award Tour","Tribe Called Quest","Rap",229,NULL,"Midnight Marauders"
 );
 INSERT INTO SONGS VALUES (
-21,"Pretty Good at Drinkin' Beer","Billy Currington","Country",182,"NULL","Enjoy Yourself"
+21,"Pretty Good at Drinkin' Beer","Billy Currington","Country",182,NULL,"Enjoy Yourself"
 );
 INSERT INTO SONGS VALUES (
-22,"Do I wana Know?","Arctic Monkeys","Alternative",272,"NULL","AM"
+22,"Do I wana Know?","Arctic Monkeys","Alternative",272,NULL,"AM"
 );
 INSERT INTO SONGS VALUES (
-23,"Doeses & Mimosas","Cherub","Electronic",332,"NULL","MoM & DaD"
+23,"Doeses & Mimosas","Cherub","Electronic",332,NULL,"MoM & DaD"
 );
 INSERT INTO SONGS VALUES (
-24,"Time","Hans Zimmer","Classical",276,"NULL","Inception (Music from the Motion Picture)"
+24,"Time","Hans Zimmer","Classical",276,NULL,"Inception (Music from the Motion Picture)"
 );
 INSERT INTO SONGS VALUES (
-25,"Dream is Collapsing","Hans Zimmer","Classical",144,"NULL","Inception (Music from the Motion Picture)"
+25,"Dream is Collapsing","Hans Zimmer","Classical",144,NULL,"Inception (Music from the Motion Picture)"
 );
 INSERT INTO SONGS VALUES (
-26,"Dream Within a Dream","Hans Zimmer","Classical",304,"NULL","Inception (Music from the Motion Picture)"
+26,"Dream Within a Dream","Hans Zimmer","Classical",304,NULL,"Inception (Music from the Motion Picture)"
+);
+INSERT INTO SONGS VALUES (
+27,"Can't Kill Us","The Glitch Mod","Electronic",295,NULL,"Love Death Immortality"
+);
+INSERT INTO SONGS VALUES (
+28,"Drive It Like You Stole It","The Glitch Mod","Electronic",354,NULL,"Drink The Sea"
+);
+INSERT INTO SONGS VALUES (
+29,"Between Two Points (feat. Swan)","The Glitch Mod","Electronic",333,NULL,"Drink The Sea"
+);
+INSERT INTO SONGS VALUES (
+30,"Feel Good","Chip Tha Ripper","Rap",228,NULL,"Feel Good"
+);
+INSERT INTO SONGS VALUES (
+31,"Addicted To You","Avicii","Electronic",332,NULL,"Addicted To You"
+);
+INSERT INTO SONGS VALUES (
+32,"Changes - Original Mix","Faul & Wad Ad","Electronic",345,NULL,"Changes"
+);
+INSERT INTO SONGS VALUES (
+33,"Safe and Soung","Capital Cties","Alternative",193,NULL,"Safe and Sound - Single"
+);
+INSERT INTO SONGS VALUES (
+34,"Lose Yourself to Dance (Feat. Pharrell Williams)","Daft Punk","Electronic",354,NULL,"Random Access Memories"
+);
+INSERT INTO SONGS VALUES (
+35,"Promesses (Feat. B Lacoste)","Dimmi","Electronic",210,NULL,"Promesses"
+);
+INSERT INTO SONGS VALUES (
+36,"Golddust","DJ Fresh","Electronic",192,NULL,"Kyrptonite"
+);
+INSERT INTO SONGS VALUES (
+37,"Feel So Close","Calvin Harris","Electronic",206,NULL,"18 Months"
+);
+INSERT INTO SONGS VALUES (
+38,"Do It Again","Royksopp & Robyn","Electronic",306,NULL,"Do It Again"
+);
+INSERT INTO SONGS VALUES (
+39,"Jealous (I Ain't With It)","Chromeo","Electronic",218,NULL,"Jealous"
+);
+INSERT INTO SONGS VALUES (
+40,"This Is What It Feels Like (Feat. Trevor Guthrie)","Armin Van Buuren","Electronic",203,NULL,"This Is What It Feels Like"
+);
+INSERT INTO SONGS VALUES (
+41,"I Can't Drive 55","Sammy Hager","Rock",254,NULL,"Voa"
+);
+INSERT INTO SONGS VALUES (
+42,"Don't Stop Me Now","Queen","Rock",209,NULL,"Jazz"
+);
+INSERT INTO SONGS VALUES (
+43,"American Pie ","Don McLean","Rock",511,NULL,"Solo: Live"
+);
+INSERT INTO SONGS VALUES (
+44,"All Night","Icona Pop","Electronic",187,NULL,"THIS IS… ICONA POP"
+);
+INSERT INTO SONGS VALUES (
+45,"Daft Punk Is Playing At My House","LCD Soundsystem","Alternative",317,NULL,"LCD Soundsystem"
+);
+INSERT INTO SONGS VALUES (
+46,"Who Do You Love (Feat. YG)","Drake","Rap",234,NULL,"Who Do You Love?"
+);
+INSERT INTO SONGS VALUES (
+47,"Azure","Paul Kalkbrenner","Electronic",373,NULL,"Renaissance - The Mix Collection"
 );
 
 
@@ -189,6 +258,105 @@ INSERT INTO MOOD VALUES(
 INSERT INTO MOOD VALUES(
 26,"Chill"
 );
+INSERT INTO MOOD VALUES(
+27,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+28,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+29,"Chill"
+);
+INSERT INTO MOOD VALUES(
+30,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+30,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+31,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+31,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+32,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+32,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+33,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+33,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+34,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+34,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+35,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+35,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+36,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+36,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+37,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+37,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+38,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+39,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+40,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+40,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+41,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+42,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+42,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+43,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+43,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+44,"Uplifting"
+);
+INSERT INTO MOOD VALUES(
+44,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+45,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+46,"Energetic"
+);
+INSERT INTO MOOD VALUES(
+47,"Chill"
+);
 
 INSERT INTO ACTIVITY VALUES(
 1,"Relaxing"
@@ -207,6 +375,9 @@ INSERT INTO ACTIVITY VALUES(
 );
 INSERT INTO ACTIVITY VALUES(
 6,"Relaxing"
+);
+INSERT INTO ACTIVITY VALUES(
+7,"Driving"
 );
 INSERT INTO ACTIVITY VALUES(
 7,"Partying"
@@ -249,7 +420,7 @@ INSERT INTO ACTIVITY VALUES(
 );
 INSERT INTO ACTIVITY VALUES(
 18,"Sitting in the Sun"
-);	
+);","
 INSERT INTO ACTIVITY VALUES(
 19,"Partying"
 );
@@ -276,4 +447,82 @@ INSERT INTO ACTIVITY VALUES(
 );
 INSERT INTO ACTIVITY VALUES(
 26,"Working"
+);
+INSERT INTO ACTIVITY VALUES(
+27,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+28,"Driving"
+);
+INSERT INTO ACTIVITY VALUES(
+28,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+29,"Relaxing"
+);
+INSERT INTO ACTIVITY VALUES(
+30,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+31,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+32,"Studying"
+);
+INSERT INTO ACTIVITY VALUES(
+32,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+33,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+34,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+35,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+36,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+37,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+38,"Working Out"
+);
+INSERT INTO ACTIVITY VALUES(
+39,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+39,"Working Out"
+);
+INSERT INTO ACTIVITY VALUES(
+40,"Working Out"
+);
+INSERT INTO ACTIVITY VALUES(
+40,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+41,"Driving"
+);
+INSERT INTO ACTIVITY VALUES(
+42,"Driving"
+);
+INSERT INTO ACTIVITY VALUES(
+43,"Driving"
+);
+INSERT INTO ACTIVITY VALUES(
+43,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+44,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+45,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+46,"Partying"
+);
+INSERT INTO ACTIVITY VALUES(
+47,"Relaxing"
 );
