@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.sql.*;
+
 import javax.swing.AbstractListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -16,31 +17,29 @@ public class Controller {
 	public Connection connection;
 	public Statement statement;
 	
-	public Controller() throws ClassNotFoundException
-	{
-    // load the sqlite-JDBC driver using the current class loader
-    Class.forName("org.sqlite.JDBC");
-
-    connection = null;
-    try
-    {
-      // create a database connection
-      connection = DriverManager.getConnection("jdbc:sqlite:DatabaseProject.db");
-      statement = connection.createStatement();
-      statement.setQueryTimeout(30);  // set timeout to 30 sec.
-	}
-	catch(SQLException e)
-    {
-      // if the error message is "out of memory", 
-      // it probably means no database file is found
-      System.err.println(e.getMessage());
-    }
-	}
 	
-	public Controller(JLabel listenedTo, JList<String> displaySongsList) {
+	public Controller(JLabel listenedTo, JList<String> displaySongsList)  throws ClassNotFoundException {
 		this.listenedTo = listenedTo;
 		list = new SongList();
 		displaySongsList.setModel(list);
+		
+		// load the sqlite-JDBC driver using the current class loader
+	    Class.forName("org.sqlite.JDBC");
+
+	    connection = null;
+	    try
+	    {
+	      // create a database connection
+	      connection = DriverManager.getConnection("jdbc:sqlite:DatabaseProject.db");
+	      statement = connection.createStatement();
+	      statement.setQueryTimeout(30);  // set timeout to 30 sec.
+		}
+		catch(SQLException e)
+	    {
+	      // if the error message is "out of memory", 
+	      // it probably means no database file is found
+	      System.err.println(e.getMessage());
+	    }
 	}
 	
 	/**
@@ -50,6 +49,22 @@ public class Controller {
 	public void searchForMoods(String moodList) {
 		try{
 			ResultSet moodPlaylist = statement.executeQuery("SELECT SONG_ID, NAME, ARTIST, GENRE, LENGTH, RATING, ALBUM FROM SONGS JOIN (SELECT SONG_ID FROM MOOD WHERE MOOD_NAME = " + moodList + ") USING (SONG_ID);");
+			int count = 0;
+			while(moodPlaylist.next())
+		    {
+				count++;
+		    }
+			moodPlaylist.first();
+			String [] s = new String[count];
+			count = 0;
+			while(moodPlaylist.next())
+		    {
+		        for(int i=1; i<7; i++){
+		        	s[count] += moodPlaylist.getString(i);
+		        }
+		        count++;        
+		    }
+			updatePlaylist(s);
 		}
 		catch(SQLException e)
 		{
@@ -66,6 +81,22 @@ public class Controller {
 	public void searchForActivities(String activityList) {
 		try{
 			ResultSet activityPlaylist = statement.executeQuery("SELECT SONG_ID, NAME, ARTIST, GENRE, LENGTH, RATING, ALBUM FROM SONGS JOIN (SELECT SONG_ID FROM ACTIVITY WHERE ACTIVITY_NAME = " + activityList + ") USING (SONG_ID);");
+			int count = 0;
+			while(activityPlaylist.next())
+		    {
+				count++;
+		    }
+			activityPlaylist.first();
+			String [] s = new String[count];
+			count = 0;
+			while(activityPlaylist.next())
+		    {
+		        for(int i=1; i<7; i++){
+		        	s[count] += activityPlaylist.getString(i);
+		        }
+		        count++;        
+		    }
+			updatePlaylist(s);
 		}
 		catch(SQLException e)
 		{
@@ -74,6 +105,19 @@ public class Controller {
 		System.err.println(e.getMessage());
 		}
 
+	}
+	
+	public void closeDatabase(){
+		try{
+			if(connection != null)
+	          connection.close();
+	      }
+	      catch(SQLException e)
+	      {
+	        // connection close failed.
+	        System.err.println(e);
+	      }
+	    
 	}
 	
 	/**

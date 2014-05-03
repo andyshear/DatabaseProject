@@ -1,6 +1,8 @@
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.AbstractListModel;
@@ -123,7 +125,12 @@ public class Window {
 		
 		//NON-GENERATED CODE
 		
-		Controller.instance = new Controller(lblTimeListenedTo, list);
+		try {
+			Controller.instance = new Controller(lblTimeListenedTo, list);
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		btnSearchMood.addActionListener(new AbstractAction() {
 
 			@Override
@@ -139,6 +146,11 @@ public class Window {
 				Controller.instance.searchForActivities(activityText.getText());				
 			}
 			
+		});
+		frmTeamMonstarsProject.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+				Controller.instance.closeDatabase();
+			}
 		});
 	}
 
