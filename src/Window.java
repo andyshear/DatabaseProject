@@ -1,21 +1,19 @@
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.AbstractListModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.SpringLayout;
-import java.awt.Font;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 
 public class Window {
@@ -107,16 +105,16 @@ public class Window {
 		springLayout.putConstraint(SpringLayout.NORTH, lblTimeListenedTo, 17, SpringLayout.SOUTH, scrollPane);
 		frmTeamMonstarsProject.getContentPane().add(lblTimeListenedTo);
 		
-		final JComboBox moods = new JComboBox();
-		moods.setModel(new DefaultComboBoxModel(new String[] {"Chill", "Energetic", "Uplifting"}));
+		final JComboBox<String> moods = new JComboBox<String>();
+		moods.setModel(new DefaultComboBoxModel<String>(new String[] {"Chill", "Energetic", "Uplifting"}));
 		springLayout.putConstraint(SpringLayout.NORTH, moods, -24, SpringLayout.NORTH, lblYourActivity);
 		springLayout.putConstraint(SpringLayout.WEST, moods, 23, SpringLayout.WEST, frmTeamMonstarsProject.getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, moods, -4, SpringLayout.NORTH, lblYourActivity);
 		springLayout.putConstraint(SpringLayout.EAST, moods, -6, SpringLayout.WEST, btnSearchMood);
 		frmTeamMonstarsProject.getContentPane().add(moods);
 		
-		final JComboBox activities = new JComboBox();
-		activities.setModel(new DefaultComboBoxModel(new String[] {"Relaxing", "Driving", "Partying", "Sitting in the Sun", "Studying", "Working Out"}));
+		final JComboBox<String> activities = new JComboBox<String>();
+		activities.setModel(new DefaultComboBoxModel<String>(new String[] {"Relaxing", "Driving", "Partying", "Sitting in the Sun", "Studying", "Working Out"}));
 		springLayout.putConstraint(SpringLayout.NORTH, activities, -20, SpringLayout.SOUTH, btnSearchActivity);
 		springLayout.putConstraint(SpringLayout.WEST, activities, 23, SpringLayout.WEST, frmTeamMonstarsProject.getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, activities, 0, SpringLayout.SOUTH, btnSearchActivity);
@@ -152,14 +150,5 @@ public class Window {
 				Controller.instance.closeDatabase();
 			}
 		});
-	}
-
-	private class SwingAction extends AbstractAction {
-		public SwingAction() {
-			putValue(NAME, "SwingAction");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-		}
 	}
 }
