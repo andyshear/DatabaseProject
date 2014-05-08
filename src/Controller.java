@@ -55,7 +55,7 @@ public class Controller {
 				count++;
 		    }
 			moodPlaylist.first();*/
-			String [] s = new String[15];
+			String [] s = new String[100];
 			count = 0;
 			while(moodPlaylist.next())
 		    {
@@ -87,7 +87,7 @@ public class Controller {
 				count++;
 		    }
 			activityPlaylist.first();*/
-			String [] s = new String[15];
+			String [] s = new String[100];
 			count = 0;
 			while(activityPlaylist.next())
 		    {
