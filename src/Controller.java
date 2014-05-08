@@ -55,20 +55,21 @@ public class Controller {
 				count++;
 		    }
 			moodPlaylist.first();*/
-			String [] s = new String[100];
+			ArrayList<String> s = new ArrayList<String>();
 			count = 0;
 			int length = 0;
 			while(moodPlaylist.next())
 		    {
 		        for(int i=2; i<6; i++){
-		        	s[count] += moodPlaylist.getString(i);
-		        	length += Integer.parseInt(s[count]);
+		        	s.add(moodPlaylist.getString(i));		        	
 		        }
 		        count++;        
 		    }
-			updatePlaylist(s);
+			String [] sArray = new String[s.size()];
+			s.toArray(sArray);
+			updatePlaylist(sArray);
 			
-			String addMoodPlaylist = "UPDATE MOOD_PLAYLIST SET LENGTH='" + length + "' MOOD_NAME='"+ moodList + "');";
+			String addMoodPlaylist = "UPDATE MOOD_PLAYLIST SET LENGTH= '" + length + "' WHERE MOOD_NAME= '"+ moodList + "';";
 			statement.executeUpdate(addMoodPlaylist);
 			
 		}
@@ -93,20 +94,21 @@ public class Controller {
 				count++;
 		    }
 			activityPlaylist.first();*/
-			String [] s = new String[100];
+			ArrayList<String> s = new ArrayList<String>();
 			count = 0;
 			int length = 0;
 			while(activityPlaylist.next())
 		    {
 		        for(int i=2; i<6; i++){
-		        	s[count] += activityPlaylist.getString(i);
-		        	length += Integer.parseInt(s[count]);
+		        	s.add(activityPlaylist.getString(i));
 		        }
 		        count++;        
 		    }
-			updatePlaylist(s);
+			String [] sArray = new String[s.size()];
+			s.toArray(sArray);
+			updatePlaylist(sArray);
 			
-			String addMoodPlaylist = "UPDATE ACTIVITY_PLAYLIST SET LENGTH='" + length + "' ACTIVITY_NAME='"+ activityList + "');";
+			String addMoodPlaylist = "UPDATE ACTIVITY_PLAYLIST SET LENGTH= '" + length + "' WHERE ACTIVITY_NAME= '"+ activityList + "';";
 			statement.executeUpdate(addMoodPlaylist);
 			
 			
