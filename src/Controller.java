@@ -57,14 +57,20 @@ public class Controller {
 			moodPlaylist.first();*/
 			String [] s = new String[100];
 			count = 0;
+			int length = 0;
 			while(moodPlaylist.next())
 		    {
 		        for(int i=2; i<6; i++){
 		        	s[count] += moodPlaylist.getString(i);
+		        	length += Integer.parseInt(s[count]);
 		        }
 		        count++;        
 		    }
 			updatePlaylist(s);
+			
+			String addMoodPlaylist = "UPDATE MOOD_PLAYLIST SET LENGTH='" + length + "' MOOD_NAME='"+ moodList + "');";
+			statement.executeUpdate(addMoodPlaylist);
+			
 		}
 		catch(SQLException e)
 		{
@@ -89,14 +95,21 @@ public class Controller {
 			activityPlaylist.first();*/
 			String [] s = new String[100];
 			count = 0;
+			int length = 0;
 			while(activityPlaylist.next())
 		    {
 		        for(int i=2; i<6; i++){
 		        	s[count] += activityPlaylist.getString(i);
+		        	length += Integer.parseInt(s[count]);
 		        }
 		        count++;        
 		    }
 			updatePlaylist(s);
+			
+			String addMoodPlaylist = "UPDATE ACTIVITY_PLAYLIST SET LENGTH='" + length + "' ACTIVITY_NAME='"+ activityList + "');";
+			statement.executeUpdate(addMoodPlaylist);
+			
+			
 		}
 		catch(SQLException e)
 		{
