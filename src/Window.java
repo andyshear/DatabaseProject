@@ -14,13 +14,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 
 public class Window {
 
 	private JFrame frmTeamMonstarsProject;
-	private JTextField moodText;
-	private JTextField activityText;
 
 	/**
 	 * Launch the application.
@@ -58,16 +58,9 @@ public class Window {
 		SpringLayout springLayout = new SpringLayout();
 		frmTeamMonstarsProject.getContentPane().setLayout(springLayout);
 		
-		moodText = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, moodText, 23, SpringLayout.WEST, frmTeamMonstarsProject.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, moodText, -522, SpringLayout.SOUTH, frmTeamMonstarsProject.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, moodText, -129, SpringLayout.EAST, frmTeamMonstarsProject.getContentPane());
-		frmTeamMonstarsProject.getContentPane().add(moodText);
-		moodText.setColumns(10);
-		
 		JButton btnSearchMood = new JButton("Search");
 		springLayout.putConstraint(SpringLayout.NORTH, btnSearchMood, 32, SpringLayout.NORTH, frmTeamMonstarsProject.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, btnSearchMood, 6, SpringLayout.EAST, moodText);
+		springLayout.putConstraint(SpringLayout.WEST, btnSearchMood, 322, SpringLayout.WEST, frmTeamMonstarsProject.getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, btnSearchMood, -10, SpringLayout.EAST, frmTeamMonstarsProject.getContentPane());
 		btnSearchMood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -76,28 +69,19 @@ public class Window {
 		frmTeamMonstarsProject.getContentPane().add(btnSearchMood);
 		
 		JLabel lblYourMood = new JLabel("Your mood:");
-		springLayout.putConstraint(SpringLayout.NORTH, moodText, 6, SpringLayout.SOUTH, lblYourMood);
 		springLayout.putConstraint(SpringLayout.WEST, lblYourMood, 23, SpringLayout.WEST, frmTeamMonstarsProject.getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, lblYourMood, 10, SpringLayout.NORTH, frmTeamMonstarsProject.getContentPane());
 		lblYourMood.setToolTipText("Enter your preferred moods, separated by commas");
 		frmTeamMonstarsProject.getContentPane().add(lblYourMood);
 		
 		JLabel lblYourActivity = new JLabel("Your activity:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblYourActivity, 1, SpringLayout.SOUTH, moodText);
+		springLayout.putConstraint(SpringLayout.NORTH, lblYourActivity, 35, SpringLayout.SOUTH, lblYourMood);
 		springLayout.putConstraint(SpringLayout.WEST, lblYourActivity, 23, SpringLayout.WEST, frmTeamMonstarsProject.getContentPane());
 		lblYourActivity.setToolTipText("Enter your preferred activities, separated by commas");
 		frmTeamMonstarsProject.getContentPane().add(lblYourActivity);
 		
-		activityText = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, activityText, 6, SpringLayout.SOUTH, lblYourActivity);
-		springLayout.putConstraint(SpringLayout.WEST, activityText, 23, SpringLayout.WEST, frmTeamMonstarsProject.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, activityText, -473, SpringLayout.SOUTH, frmTeamMonstarsProject.getContentPane());
-		frmTeamMonstarsProject.getContentPane().add(activityText);
-		activityText.setColumns(10);
-		
 		JButton btnSearchActivity = new JButton("Search");
 		springLayout.putConstraint(SpringLayout.NORTH, btnSearchActivity, 23, SpringLayout.SOUTH, btnSearchMood);
-		springLayout.putConstraint(SpringLayout.EAST, activityText, -6, SpringLayout.WEST, btnSearchActivity);
 		springLayout.putConstraint(SpringLayout.WEST, btnSearchActivity, 0, SpringLayout.WEST, btnSearchMood);
 		springLayout.putConstraint(SpringLayout.EAST, btnSearchActivity, -10, SpringLayout.EAST, frmTeamMonstarsProject.getContentPane());
 		frmTeamMonstarsProject.getContentPane().add(btnSearchActivity);
@@ -112,7 +96,7 @@ public class Window {
 		scrollPane.setViewportView(list);
 		
 		JLabel lblYouShouldListen = new JLabel("You should listen to:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblYouShouldListen, 20, SpringLayout.SOUTH, activityText);
+		springLayout.putConstraint(SpringLayout.NORTH, lblYouShouldListen, 54, SpringLayout.SOUTH, lblYourActivity);
 		springLayout.putConstraint(SpringLayout.WEST, lblYouShouldListen, 23, SpringLayout.WEST, frmTeamMonstarsProject.getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, scrollPane, 6, SpringLayout.SOUTH, lblYouShouldListen);
 		frmTeamMonstarsProject.getContentPane().add(lblYouShouldListen);
@@ -123,7 +107,23 @@ public class Window {
 		springLayout.putConstraint(SpringLayout.NORTH, lblTimeListenedTo, 17, SpringLayout.SOUTH, scrollPane);
 		frmTeamMonstarsProject.getContentPane().add(lblTimeListenedTo);
 		
-		//NON-GENERATED CODE
+		final JComboBox moods = new JComboBox();
+		moods.setModel(new DefaultComboBoxModel(new String[] {"Chill", "Energetic", "Uplifting"}));
+		springLayout.putConstraint(SpringLayout.NORTH, moods, -24, SpringLayout.NORTH, lblYourActivity);
+		springLayout.putConstraint(SpringLayout.WEST, moods, 23, SpringLayout.WEST, frmTeamMonstarsProject.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, moods, -4, SpringLayout.NORTH, lblYourActivity);
+		springLayout.putConstraint(SpringLayout.EAST, moods, -6, SpringLayout.WEST, btnSearchMood);
+		frmTeamMonstarsProject.getContentPane().add(moods);
+		
+		final JComboBox activities = new JComboBox();
+		activities.setModel(new DefaultComboBoxModel(new String[] {"Relaxing", "Driving", "Partying", "Sitting in the Sun", "Studying", "Working Out"}));
+		springLayout.putConstraint(SpringLayout.NORTH, activities, -20, SpringLayout.SOUTH, btnSearchActivity);
+		springLayout.putConstraint(SpringLayout.WEST, activities, 23, SpringLayout.WEST, frmTeamMonstarsProject.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, activities, 0, SpringLayout.SOUTH, btnSearchActivity);
+		springLayout.putConstraint(SpringLayout.EAST, activities, 0, SpringLayout.EAST, moods);
+		frmTeamMonstarsProject.getContentPane().add(activities);
+		
+		//NON GENERATED CODE
 		
 		try {
 			Controller.instance = new Controller(lblTimeListenedTo, list);
@@ -135,7 +135,7 @@ public class Window {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Controller.instance.searchForMoods(moodText.getText());
+				Controller.instance.searchForMoods(moods.getSelectedItem().toString());
 			}
 			
 		});
@@ -143,7 +143,7 @@ public class Window {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Controller.instance.searchForActivities(activityText.getText());				
+				Controller.instance.searchForActivities(activities.getSelectedItem().toString());				
 			}
 			
 		});
