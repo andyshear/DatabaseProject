@@ -99,7 +99,7 @@ public class Window {
 		springLayout.putConstraint(SpringLayout.NORTH, scrollPane, 6, SpringLayout.SOUTH, lblYouShouldListen);
 		frmTeamMonstarsProject.getContentPane().add(lblYouShouldListen);
 		
-		JLabel lblTimeListenedTo = new JLabel("Time listened to: 0 minutes");
+		JLabel lblTimeListenedTo = new JLabel("Playlist Length: 0 minutes");
 		springLayout.putConstraint(SpringLayout.WEST, lblTimeListenedTo, 23, SpringLayout.WEST, frmTeamMonstarsProject.getContentPane());
 		lblTimeListenedTo.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		springLayout.putConstraint(SpringLayout.NORTH, lblTimeListenedTo, 17, SpringLayout.SOUTH, scrollPane);

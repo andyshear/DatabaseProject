@@ -63,8 +63,18 @@ public class Controller {
 		        for(int i=2; i<6; i++){
 		        	s.add(moodPlaylist.getString(i));		        	
 		        }
+		        s.add("");
+		        s.add("");
 		        count++;        
 		    }
+			
+			ResultSet listLength = statement.executeQuery("SELECT SUM(LENGTH) FROM (SELECT SONG_ID, NAME, ARTIST, GENRE, LENGTH, RATING, ALBUM FROM SONGS JOIN (SELECT SONG_ID FROM MOOD WHERE MOOD_NAME = '" + moodList + "') USING (SONG_ID));");
+			
+			while(listLength.next())
+		    {
+				setTimeListened(listLength.getFloat(1)/60.0f);	               
+		    }
+			
 			String [] sArray = new String[s.size()];
 			s.toArray(sArray);
 			updatePlaylist(sArray);
@@ -102,8 +112,18 @@ public class Controller {
 		        for(int i=2; i<6; i++){
 		        	s.add(activityPlaylist.getString(i));
 		        }
+		        s.add("");
+		        s.add("");
 		        count++;        
 		    }
+			
+			ResultSet listLength = statement.executeQuery("SELECT SUM(LENGTH) FROM (SELECT SONG_ID, NAME, ARTIST, GENRE, LENGTH, RATING, ALBUM FROM SONGS JOIN (SELECT SONG_ID FROM ACTIVITY WHERE ACTIVITY_NAME = '" + activityList + "') USING (SONG_ID));");
+			
+			while(listLength.next())
+		    {
+				setTimeListened(listLength.getFloat(1)/60.0f);	               
+		    }
+			
 			String [] sArray = new String[s.size()];
 			s.toArray(sArray);
 			updatePlaylist(sArray);
